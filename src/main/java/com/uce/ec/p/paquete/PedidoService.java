@@ -9,6 +9,12 @@ public class PedidoService {
 
     @Auditoria
     public String realizar(Pedido pedido, String otherParameter) {
+        long init = System.currentTimeMillis();
+        try {
+            Thread.sleep(15000);
+        } catch (Exception e) {
+        }
+
         System.out.println("::::::::::::::::::::::::::::: \nRealizando pedido....");
         System.out.println("Pedido realizado para el cliente: " + pedido.getCliente());
         System.out.println("Producto: " + pedido.getProducto());
@@ -16,8 +22,8 @@ public class PedidoService {
         System.out.println("Correo: " + pedido.getCorreo());
         System.out.println("Telefono: " + pedido.getTelefono());
         System.out.println("Pedido realizado con exito. \n ::::::::::::::::::::::::::::: ");
-
-        return "[PedidoService] Se ha ejecutado correctamente";
+        long fin = System.currentTimeMillis() - init;
+        return "[PedidoService] Se ha ejecutado correctamente \n Tiempo de ejecucion : " + fin;
     }
 
 }
