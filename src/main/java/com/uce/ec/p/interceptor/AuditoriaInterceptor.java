@@ -5,6 +5,7 @@ import java.lang.reflect.Parameter;
 import com.uce.ec.p.paquete.AuditoriaService;
 import com.uce.ec.p.paquete.Pedido;
 
+import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
@@ -12,6 +13,7 @@ import jakarta.interceptor.InvocationContext;
 
 @Auditoria
 @Interceptor
+@Priority((Interceptor.Priority.APPLICATION+3))
 public class AuditoriaInterceptor {
 
     @Inject
@@ -22,8 +24,8 @@ public class AuditoriaInterceptor {
     public Object interceptar(InvocationContext context) throws Exception {
 
         String methodName = context.getMethod().getName();
-        System.out.println("[Auditoria]-> Nombre del metodo: " + methodName);
-        System.out.println("[Auditoria] -> Ejecutacion de lo que haga el interceptor");
+        System.out.println("-> [Auditoria]-> Nombre del metodo: " + methodName);
+        System.out.println("-> [Auditoria] -> Ejecutacion de lo que haga el interceptor");
         Parameter[] parametros = context.getMethod().getParameters();
         for (Parameter p : parametros) {
             System.out.println("Parametros: " + p.getName());
@@ -37,8 +39,8 @@ public class AuditoriaInterceptor {
         // Todo lo previo se ejecuta antes de ejecutar el metodo interceptar
         Object resultado = context.proceed(); // Ejecuta el metodo interceptado
 
-        System.out.println("[Auditoria]Retorno :\""+ resultado.toString()+"\"");
-        System.out.println("[Auditoria] -> Mensaje posterior a la ejecucion del metodo");
+        System.out.println("-> [Auditoria]Retorno :\"" + resultado.toString() + "\"");
+        System.out.println("-> [Auditoria] -> Mensaje posterior a la ejecucion del metodo");
         return resultado;
     }
 }
