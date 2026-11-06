@@ -2,14 +2,17 @@ package com.uce.ec.p.Interceptor;
 
 import java.time.LocalDateTime;
 
+import com.uce.ec.p.anotaciones.Notificacion;
 import com.uce.ec.p.model.Cuenta;
 
+import jakarta.annotation.Priority;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 @Notificacion
 @Interceptor
+@Priority(2000)
 public class NotificacionInterceptor {
 
     @AroundInvoke

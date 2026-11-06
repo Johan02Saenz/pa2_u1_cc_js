@@ -21,7 +21,15 @@ public class Main implements QuarkusApplication {
         Cuenta origen = new Cuenta(22096767, "Johan", 100, "johan@gmail.com");
         Cuenta destino = new Cuenta(22096222, "Ernesto", 10, "ernesto@gmail.com");
 
-        transferenciaService.execute(origen, 5, destino);
+        try {
+            System.out.println("[Main] Primera transferencia ");
+            transferenciaService.execute(origen, 5, destino);
+            System.out.println("------------------------------------------\n[Main] Segunda transferencia ");
+            transferenciaService.execute(destino, 26, origen);
+        } catch (Exception e) {
+            Throwable causaReal = e.getCause() != null ? e.getCause() : e;
+            System.err.println(causaReal.getMessage());
+        }
         return 0;
     }
 }
