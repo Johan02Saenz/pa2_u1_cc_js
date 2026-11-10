@@ -14,9 +14,11 @@ public class MedirTiempoInter {
     public Object interceptar(InvocationContext contex) throws Exception{
 
         long init = System.currentTimeMillis();
-       Object resul= contex.proceed();
+       System.out.println();
         long fin = System.currentTimeMillis();
         System.out.println("-> [Interceptor]El metodo demoro: " + (fin-init));
+        Object resul = contex.proceed();
+
         return resul;
 
     }

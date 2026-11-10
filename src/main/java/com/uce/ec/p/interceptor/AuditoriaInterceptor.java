@@ -37,10 +37,12 @@ public class AuditoriaInterceptor {
         String correo = pedido.getCorreo();
         this.auditoriaService.guardarEnLaBAse(cliente, total, correo);
         // Todo lo previo se ejecuta antes de ejecutar el metodo interceptar
-        Object resultado = context.proceed(); // Ejecuta el metodo interceptado
+       // bject resultado = context.proceed();O // Ejecuta el metodo interceptado
 
-        System.out.println("-> [Auditoria]Retorno :\"" + resultado.toString() + "\"");
+       // System.out.println("-> [Auditoria]Retorno :\"" + resultado.toString() + "\"");
         System.out.println("-> [Auditoria] -> Mensaje posterior a la ejecucion del metodo");
+        Object resultado = context.proceed();
+        
         return resultado;
     }
 }

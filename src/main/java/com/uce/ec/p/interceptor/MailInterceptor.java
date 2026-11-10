@@ -18,12 +18,13 @@ public class MailInterceptor {
         String asunto = "Confirmacion de pedido";
         String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + pedido.getProducto()
                 + " por un total de $" + pedido.getTotal() + " ha sido realizado con exito.";
-        Object resul = contex.proceed();
-
+        
         System.out.println("-> [Mail] Enviando correo a: " + pedido.getCorreo());
         System.out.println("Asunto: " + asunto);
         System.out.println("Cuerpo: " + cuerpo);
         System.out.println("Correo enviado con exito");
+        Object resul = contex.proceed();
+
         return resul;
     }
 

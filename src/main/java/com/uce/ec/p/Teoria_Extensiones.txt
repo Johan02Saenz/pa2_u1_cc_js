@@ -1,0 +1,10 @@
+#Extencion
+Es un componente modular que intengra una tecnologia/servicio/funcionalidad adicional o amplia/personalizar
+las capacidades al framework o al sistema.
+
+Formas para hacer extenciones; la mas comun atravez de interfaces
+
+Una extencion al sistema sin tocar la logica principal
+
+**Concluciones**
+Se ha creado un software que soporta las extenciones de funcionalidad de notificaciones 

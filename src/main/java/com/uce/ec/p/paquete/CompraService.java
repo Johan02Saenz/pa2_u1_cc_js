@@ -1,5 +1,6 @@
 package com.uce.ec.p.paquete;
 
+import com.uce.ec.p.extensiones.NotificacionExtension;
 import com.uce.ec.p.interfaz.Notificacion;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -8,11 +9,8 @@ import jakarta.inject.Named;
 
 @ApplicationScoped
 public class CompraService {
-    @Inject
-    @Named("mail")
-    private Notificacion notificacionCorreo;
 
-    public void realizar(Compra compra) {
+    public void realizar(Compra compra, NotificacionExtension notiExt) {
         System.out.println("Realizando Compra....");
         System.out.println("Pedido realizado para el cliente: " + compra.getCliente());
         System.out.println("Producto: " + compra.getProducto());
@@ -20,13 +18,16 @@ public class CompraService {
         System.out.println("Correo: " + compra.getCorreo());
         System.out.println("Telefono: " + compra.getTelefono());
         System.out.println("Pedido realizado con exito. \n ::::::::::::::::::::::::::::: ");
-        String cuerpo = "Estimado " + compra.getCliente() + ", su pedido de " + compra.getProducto()
+        String cuerpo = "\n     Estimado " + compra.getCliente() + ", su pedido de " + compra.getProducto()
                 + " por un total de $" + compra.getTotal() + " ha sido realizado con exito.";
 
-        // Notificacion por correo
-        this.notificacionCorreo.enviar(compra.getCorreo(), cuerpo);
-        this.notificacionCorreo.setCant(this.notificacionCorreo.getCant() + 1);
-        System.out.println("Cantidad de correos enviados: " + this.notificacionCorreo.getCant());
-        System.out.println("Nombre:" + this.notificacionCorreo.getName());
+        /*
+         * Programacion del envio de la notificacion
+         * Recibir una implementacion de la interfaz como un parametro para garantizar
+         * la extenciabilidad
+         */
+
+        notiExt.enviar(cuerpo, compra.getCliente());
+
     }
 }

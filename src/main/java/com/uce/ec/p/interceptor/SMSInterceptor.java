@@ -17,11 +17,13 @@ public class SMSInterceptor {
         Pedido pedido = (Pedido) contex.getParameters()[0];
         String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + pedido.getProducto()
                 + " por un total de $" + pedido.getTotal() + " ha sido realizado con exito.";
-        Object resul = contex.proceed();
+        
 
         System.out.println("-> [SMS] Enviando SMS a: " + pedido.getTelefono());
         System.out.println("Mensaje: " + cuerpo);
         System.out.println("SMS enviado con exito");
+        Object resul = contex.proceed();
+
         return resul;
     }
 
