@@ -37,7 +37,7 @@ public class Main implements QuarkusApplication {
         Compra compra = new Compra("Johan Saenz", "Audifonos Soundcore q11i", 35, "johan@gmail.com", "0123456789");
         Compra compra1 = new Compra("Johan Saenz", "Tanzu Jade", 40, "johan@gmail.com", "0123456789");
          Compra compra2 = new Compra("Johan Saenz", "Monster Ultra", 3, "johan@gmail.com", "0123456789");
-         // prueba de commit
+         // prueba de commit 2
         compraService.realizar(compra, this.notificacionExtnMail );
         compraService.realizar(compra1, this.notificacionExtnSMS );
         compraService.realizar(compra2, this.notificacionExtnWhatsApp);
